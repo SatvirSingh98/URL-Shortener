@@ -6,7 +6,6 @@ def shortener(request):
     if request.method == 'POST':
         full_url = request.POST.get('full_url')
         obj, _ = UrlShortener.objects.get_or_create(original_url=full_url)
-        print(obj)
         context = {'full_url': full_url, 
                    'short_url': f'{request.get_host()}/{obj.slug}'}
         return render(request, 'URL/index.html', context)
